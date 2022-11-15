@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 export default function Login() {
   return (
-    <div>
-      <Navbar />
+    <div className='d-flex flex-column align-items-center'>
+      <Navbar className="fixed-top" />
       <main className="form-signin w-100 m-auto d-flex justify-content-center ">
      
       <form className='col-3'>
@@ -27,11 +28,13 @@ export default function Login() {
           </label>
         </div>
         <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p className="mt-5 mb-3 text-muted">© 2017–2022</p>
+        
       </form>
-  </main>
-  
-    </div>
+    </main>
+    <div className='container-footer fixed-bottom'>
+      <Footer/>
+    </div>    
+  </div>
   )
     
 }
