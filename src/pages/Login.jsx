@@ -1,7 +1,8 @@
 import * as React from 'react';
 import "../style/Login.css"
+import { Link } from 'react-router-dom';
 
-import Footer from './components/Footer';
+
 
 export default function Login() {
   return (
@@ -10,7 +11,7 @@ export default function Login() {
     
       <form className='col-3'>
         <img className="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
-        <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 className="h3 mb-3 fw-normal">Please login</h1>
     
         <div className="form-floating">
           <input type="email" className="form-control" id="" placeholder="name@example.com" />
@@ -23,15 +24,20 @@ export default function Login() {
     
         <div className="checkbox mb-3">
           <label>
-            <input type="checkbox" value="remember-me" /> Remember me
+            <input type="checkbox" className='' value="remember-me" /> 
+              <span>Remember me</span>
           </label>
         </div>
-        <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        
+        <button className="w-100 btn btn-lg btn-primary" type="submit">Connect</button>
+        <div className='container-create-account'>
+          <span>
+            <Link to="/SignIn">Create an account</Link>
+          </span>
+        </div>
+
       </form>
     </main>
     <div className='container-footer fixed-bottom'>
-      <Footer/>
     </div>    
   </div>
   )

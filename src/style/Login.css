@@ -2,3 +2,9 @@
     height: 100vh;
     padding-bottom: 20px;
 }
+
+.container-create-account{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    }
