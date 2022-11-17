@@ -36,17 +36,12 @@ export default function Login() {
             <input type="password" className="form-control" placeholder="Password" />
             <label >Repeat Password</label>
         </div>
-        
-
-        
-    
-        
-        <button className="w-100 btn btn-lg btn-primary button-sign-in" type="submit">Sign in</button>
+        <div className='button-sign-in'>
+        <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </div>
         
       </form>
-    </main>
-    <div className='container-footer fixed-bottom'>
-    </div>    
+    </main>    
   </div>
   )
     
