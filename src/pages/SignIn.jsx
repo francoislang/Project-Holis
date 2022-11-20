@@ -12,12 +12,14 @@ export default function SignIn() {
   const [lastName, setLastName] = useState('');
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
 
   const datas = {
     firstName: firstName,
     lastName: lastName,
     mail: mail,
-    password: password
+    password: password,
+    repeatPassword: repeatPassword
    }
    
 
@@ -31,11 +33,30 @@ export default function SignIn() {
   };
 
   function postData(){
-  fetch("http://localhost:80/users", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+
+    
+    if(datas.firstName !== ""
+      && datas.lastName !== "" 
+      && datas.mail !== "" 
+      && datas.password !== "" 
+      && datas.repeatPassword !== ""){
+
+        if(datas.password !== datas.repeatPassword){
+          alert("Les mots de passe ne correspondent pas")
+        }
+        else{
+        fetch("http://localhost:80/postUsers", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+        }
+      
+      }
+      else{
+        alert("Veuillez remplir tous les champs")
+      }
   }
+
 
   
 
@@ -65,6 +86,7 @@ export default function SignIn() {
             </div>
         </div>
 
+
         <div className="form-floating mt-2">
             <input type="mail" className="form-control" placeholder="Mail" value={mail} onChange={(e) => {
               setMail(e.target.value)
@@ -79,10 +101,14 @@ export default function SignIn() {
             <label >Password</label>
         </div>
 
+
         <div className="form-floating mt-2">
-            <input type="password" className="form-control" placeholder="Password" />
+            <input type="password" className="form-control" placeholder="Password" value={repeatPassword} onChange={(e) =>{
+              setRepeatPassword(e.target.value)
+            }} />
             <label >Repeat Password</label>
         </div>
+
         <div className='button-sign-in'>
         <button className="w-100 btn btn-lg btn-primary" type="button" onClick={postData}>Sign in</button>
         </div>

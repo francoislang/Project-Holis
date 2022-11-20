@@ -23,12 +23,11 @@ async function getAllUsers(){
     return users.rows;
 }
 
-// function post user to database
-async function postUser(user){
-    const newUser = await client.query('INSERT INTO "public"."users" (first_name, password, mail, last_name)', [user.first_name, user.password, user.mail, user.last_name])
+// function to add a user
+async function addUser(user){
+    const newUser = await client.query('INSERT INTO "public"."users" ("first_name", "password", "mail", "last_name") VALUES ($1, $2, $3, $4)', [user.firstName, user.password, user.mail, user.lastName])
+    
 }
-
-
 
 // get all users
 app.get('/users',  async (req, res) => {
@@ -37,10 +36,9 @@ app.get('/users',  async (req, res) => {
 })
 
 // post user
-app.post('/users', jsonParser,  async (req, res) => {
+app.post('/postUsers', jsonParser,  async (req, res) => {
     const user = req.body;
-    const newUser = await postUser(user);
-    console.log(user);
+    const newUser = await addUser(user);
 })
 
 
