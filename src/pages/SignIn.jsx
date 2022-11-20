@@ -13,18 +13,31 @@ export default function SignIn() {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
-  
-  function saveData(){
-   const datas = {
+  const datas = {
     firstName: firstName,
     lastName: lastName,
     mail: mail,
     password: password
    }
-   fetch('http://localhost:80/users').then(res => console.log(res))
+   
 
+   const requestOptions = {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 
+    'Content-Type': 'application/json' 
+  },
+    body: JSON.stringify(datas)
+  };
+
+  function postData(){
+  fetch("http://localhost:80/users", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
   }
 
+  
 
 
   return (
@@ -71,7 +84,7 @@ export default function SignIn() {
             <label >Repeat Password</label>
         </div>
         <div className='button-sign-in'>
-        <button className="w-100 btn btn-lg btn-primary" type="button" onClick={saveData}>Sign in</button>
+        <button className="w-100 btn btn-lg btn-primary" type="button" onClick={postData}>Sign in</button>
         </div>
               <div id='writeMessage'></div>
       </form>
